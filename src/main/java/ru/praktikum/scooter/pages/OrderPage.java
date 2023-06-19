@@ -1,8 +1,10 @@
-package ru.praktikum.scooter.pageObject;
+package ru.praktikum.scooter.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.praktikum.scooter.Const;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class OrderPage extends BasePage {
 
@@ -26,11 +28,7 @@ public class OrderPage extends BasePage {
 
     public OrderPage(WebDriver driver) {
         super(driver);
-        if (!driver.getCurrentUrl().equals(Const.ORDER_PAGE_URL)) {
-            throw new IllegalArgumentException("This is not Scooter order page. " +
-                    "Expected  " + Const.ORDER_PAGE_URL +
-                    " but got: " + driver.getCurrentUrl());
-        }
+        assertEquals("This is not Scooter order page.", Const.ORDER_PAGE_URL, driver.getCurrentUrl());
     }
 
     public void setFirstName(String firstName) {
@@ -50,7 +48,7 @@ public class OrderPage extends BasePage {
 
     public void setMetroStation(String station) {
         driver.findElement(metroStationField).sendKeys(station);
-        waitSeconds(10);
+        waitToBeClickable(stationSelect);
         driver.findElement(stationSelect).click();
     }
 
@@ -60,6 +58,7 @@ public class OrderPage extends BasePage {
     }
 
     public RentPage clickNextButton() {
+        waitToBeClickable(nextButton);
         driver.findElement(nextButton).click();
         return new RentPage(driver);
     }
@@ -73,6 +72,7 @@ public class OrderPage extends BasePage {
     }
 
     public void clickScooterLogo() {
+        waitToBeClickable(logoScooter);
         driver.findElement(logoScooter).click();
     }
 

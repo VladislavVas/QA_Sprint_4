@@ -1,4 +1,4 @@
-package ru.praktikum.scooter.pageObject;
+package ru.praktikum.scooter.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,16 +7,9 @@ import ru.praktikum.scooter.Const;
 
 import java.util.List;
 
-public class HomePage extends BasePage {
+import static junit.framework.TestCase.assertEquals;
 
-    // лого "Яндекс" в шапке
-    private final By logoYandex = By.cssSelector("a.Header_LogoYandex__3TSOI");
-    // кнопка "Заказать" в шапке
-    private final By headerRentButton = By.xpath("(.//button[contains(text(), 'Заказать')])[1]");
-    // кнопка "Заказать" в теле
-    private final By bodyRentButton = By.xpath("(.//button[contains(text(), 'Заказать')])[2]");
-    // кнопка "да все привыкли" (принятие куки) в
-    private final By confirmCookieButton = By.className("App_CookieButton__3cvqF");
+public class HomePage extends BasePage {
 
     private static final List<String> questionsButtonsList = List.of(
             "accordion__heading-0",
@@ -28,7 +21,6 @@ public class HomePage extends BasePage {
             "accordion__heading-6",
             "accordion__heading-7"
     );
-
     private static final List<String> textQuestionsList = List.of(
             "accordion__panel-0",
             "accordion__panel-1",
@@ -39,14 +31,18 @@ public class HomePage extends BasePage {
             "accordion__panel-6",
             "accordion__panel-7"
     );
+    // лого "Яндекс" в шапке
+    private final By logoYandex = By.cssSelector("a.Header_LogoYandex__3TSOI");
+    // кнопка "Заказать" в шапке
+    private final By headerRentButton = By.xpath("(.//button[contains(text(), 'Заказать')])[1]");
+    // кнопка "Заказать" в теле
+    private final By bodyRentButton = By.xpath("(.//button[contains(text(), 'Заказать')])[2]");
+    // кнопка "да все привыкли" (принятие куки) в
+    private final By confirmCookieButton = By.className("App_CookieButton__3cvqF");
 
     public HomePage(WebDriver driver) {
         super(driver);
-        if (!driver.getCurrentUrl().equals(Const.APP_URL)) {
-            throw new IllegalArgumentException("This is not Scooter home page. " +
-                    "Expected " + Const.APP_URL +
-                    " but got: " + driver.getCurrentUrl());
-        }
+        assertEquals("This is not Scooter home page.", Const.APP_URL, driver.getCurrentUrl());
     }
 
     public void acceptCookie() {
@@ -80,6 +76,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickYandexLogo() {
+        waitToBeClickable(logoYandex);
         driver.findElement(logoYandex).click();
     }
 

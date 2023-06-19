@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.praktikum.scooter.pageObject.*;
+import ru.praktikum.scooter.pages.*;
 
 @RunWith(Parameterized.class)
 public class NewOrderTest extends BaseTest {
@@ -48,7 +48,6 @@ public class NewOrderTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.acceptCookie();
         OrderPage orderPage = homePage.rentScooterByHeaderButton();
-        orderPage.waitSeconds(3);
         orderPage.setFirstName(firstName);
         orderPage.setLastName(lastName);
         orderPage.setAddress(address);
@@ -64,7 +63,6 @@ public class NewOrderTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.acceptCookie();
         OrderPage orderPage = homePage.rentScooterByBodyButton();
-        orderPage.waitSeconds(3);
         orderPage.setFirstName(firstName);
         orderPage.setLastName(lastName);
         orderPage.setAddress(address);
@@ -79,7 +77,6 @@ public class NewOrderTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.acceptCookie();
         OrderPage orderPage = homePage.rentScooterByBodyButton();
-        orderPage.waitSeconds(3);
         orderPage.setAllFields("Имя", "Фамилия", "Адрес", "84957777777", "Выхино");
         RentPage rentPage = orderPage.clickNextButton();
         rentPage.setColour(colour);
@@ -89,7 +86,7 @@ public class NewOrderTest extends BaseTest {
         rentPage.clickConfirmButton();
         ApprovalPage approvalPage = new ApprovalPage(driver);
         PlacedOrderPage placedOrderPage = approvalPage.approveOrder();
-        Assert.assertEquals("Order processing error", true, placedOrderPage.getOrderStatusMessage());
+        Assert.assertTrue("Order processing error", placedOrderPage.getOrderStatusMessage());
     }
 
 }

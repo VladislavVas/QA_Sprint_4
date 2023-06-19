@@ -4,16 +4,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.praktikum.scooter.pageObject.HomePage;
+import ru.praktikum.scooter.pages.HomePage;
 
 import java.util.List;
 
 @RunWith(Parameterized.class)
 public class QuestionsListTest extends BaseTest {
-
-    private final int questionLocator;
-    private final int answerLocator;
-    private final String expectedText;
 
     private final static List<String> expectedAnswers = List.of(
             "Сутки — 400 рублей. Оплата курьеру — наличными или картой.",
@@ -25,6 +21,9 @@ public class QuestionsListTest extends BaseTest {
             "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.",
             "Да, обязательно. Всем самокатов! И Москве, и Московской области."
     );
+    private final int questionLocator;
+    private final int answerLocator;
+    private final String expectedText;
 
     public QuestionsListTest(int questionLocator, int answerLocator, String expectedText) {
         this.questionLocator = questionLocator;

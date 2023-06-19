@@ -1,9 +1,11 @@
-package ru.praktikum.scooter.pageObject;
+package ru.praktikum.scooter.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import ru.praktikum.scooter.Const;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class RentPage extends BasePage {
 
@@ -20,11 +22,7 @@ public class RentPage extends BasePage {
 
     public RentPage(WebDriver driver) {
         super(driver);
-        if (!driver.getCurrentUrl().equals(Const.ORDER_PAGE_URL)) {
-            throw new IllegalArgumentException("This is not Scooter order page. " +
-                    "Expected " + Const.ORDER_PAGE_URL +
-                    " but got: " + driver.getCurrentUrl());
-        }
+        assertEquals("This is not Scooter rent page.", Const.ORDER_PAGE_URL, driver.getCurrentUrl());
     }
 
     public String getRentPageHeader() {

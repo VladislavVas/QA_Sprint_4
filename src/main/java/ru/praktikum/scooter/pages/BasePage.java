@@ -1,4 +1,4 @@
-package ru.praktikum.scooter.pageObject;
+package ru.praktikum.scooter.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,10 +13,6 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public void waitSeconds(int seconds) {
-        new WebDriverWait(driver, seconds);
     }
 
     public void waitToBeClickable(By locator) {
