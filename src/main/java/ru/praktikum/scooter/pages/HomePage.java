@@ -7,7 +7,7 @@ import ru.praktikum.scooter.Const;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class HomePage extends BasePage {
 
